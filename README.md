@@ -2,9 +2,10 @@
 A plugin for postgraphile adding safe update and delete mutations, where the
 client must prove knowledge of overwritten/deleted data
 
-# Author
  * Written by David Björkevik <david@bjorkevik.se>
  * Paid for by [Envista AB](https://www.envista.se/)
+ * Thanks to [benjie](https://github.com/benjie) for useful pointers on how to
+   implement this
 
 I needed to build this for an internal project. **It needs better
 packaging to be distributed** but I release it anyways in case it helps
