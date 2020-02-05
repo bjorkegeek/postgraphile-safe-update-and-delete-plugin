@@ -39,9 +39,9 @@ interface Inflectors {
 }
 
 // Check if we should omit timestamp verification for this table
-function omit({ scope, build }) {
+function omit({ scope }) {
   const table = scope.pgFieldIntrospection || scope.pgIntrospection;
-  return build.pgOmit(table, "safeUpdateAndDelete");
+  return !!table.tags.disableSafeUpdateAndDelete;
 }
 
 // Produce the plugin for adding the timestamp field to mutation input
@@ -59,7 +59,7 @@ function makeAddTimestampFieldPlugin(timestampColumn: string) {
         } else {
           return fields;
         }
-        if (omit({ scope, build })) {
+        if (omit({ scope })) {
           return fields;
         }
         const timestampAttribute = attributes.find(
@@ -214,7 +214,7 @@ function makeVerifyTimestampPlugin(timestampColumn: string) {
     (context, build) => {
       if (
         isRelevantMutation(context.scope) &&
-        !omit({ scope: context.scope, build })
+        !omit({ scope: context.scope })
       ) {
         return { scope: context.scope, build };
       }

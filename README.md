@@ -45,5 +45,5 @@ app.use(
 
  * Tables that lack a column with the given name will not have the safety
    logic added
- * To disable the safety logic explicitly for a table, use 
-   `@omit safeUpdateAndDelete`
+ * To disable the safety logic explicitly for a table, use the 
+   `@disableSafeUpdateAndDelete` tag
